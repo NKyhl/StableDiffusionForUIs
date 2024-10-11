@@ -1,0 +1,62 @@
+{% extends "base.html" %} 
+{% block styles %}
+<style>
+
+  .row {
+    width: 100%;
+    height: {{ 100 / 3 }}%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    width: {{ 100 / 3 }}%;
+    height: 100%;
+    gap: 20px;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+  }
+</style>
+{% endblock %} 
+
+{% block content %}
+<body>
+  <div class="container">
+    {% for ir in range(1, -2, -1) %}
+    <div class="row">
+      {% for ic in range(-1, 2) %}
+      <div class="col">
+        {% if ir == row and ic == col %}
+        <div class="block">
+          <form action="">
+            <label for="{{ input_type }}">{{ input_type | title }}:</label>
+            <br>
+            {% if default_value %}
+            <input type="{{ input_type }}" id="{{ input_type }}" value="{{ default_value }}">
+            {% else %}
+            <input type="{{ input_type }}" id="{{ input_type }}">
+            {% endif %}
+          </form>
+        </div>
+        {% else %}
+        <div class="block"></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</body>
+{% endblock %}
