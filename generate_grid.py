@@ -68,7 +68,7 @@ def generate_grid_ui(theme, rows, columns):
 
     # Save description
     label = f'{rows} rows of {columns} columns with a {theme} theme'
-    label_path = f'labels/{SUBFOLDER}/ui_{tag}.txt'
+    label_path = f'labels/{SUBFOLDER}/ui_{tag}.caption'
     with open(label_path, 'w') as f:
         f.write(label)
 
