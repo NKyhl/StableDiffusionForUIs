@@ -67,7 +67,7 @@ def generate_grid_ui(theme, rows, columns):
     driver.save_screenshot(screenshot_path)
 
     # Save description
-    label = f'{rows} rows of {columns} columns with a {theme} theme'
+    label = f'a user interface with {rows} rows of {columns} columns with a {theme} theme'
     label_path = f'labels/{SUBFOLDER}/ui_{tag}.caption'
     with open(label_path, 'w') as f:
         f.write(label)

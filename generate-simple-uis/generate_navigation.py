@@ -69,7 +69,7 @@ def generate_nav_ui(theme, logo: str, links: list, dropdown: bool, searchbar: bo
     driver.save_screenshot(screenshot_path)
 
     # Save description
-    label = f"a navbar at the top of the screen{f' with {len(links)} links labeled: {links}' if links else ''}{' with a search bar' if searchbar else ''} with a {theme} theme"
+    label = f"a user interface with a navbar at the top of the screen{f' with {len(links)} links labeled: {links}' if links else ''}{' with a search bar' if searchbar else ''} with a {theme} theme"
     label_path = f'labels/{SUBFOLDER}/ui_{tag}.caption'
     with open(label_path, 'w') as f:
         f.write(label)

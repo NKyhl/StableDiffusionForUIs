@@ -69,7 +69,7 @@ def generate_input_ui(theme, input_type, default_value, location, location_descr
     driver.save_screenshot(screenshot_path)
 
     # Save description
-    label = f'{input_type} input field in the {location_description} with a {theme} theme'
+    label = f'a user interface with a {input_type} input field in the {location_description} with a {theme} theme'
     label_path = f'labels/{SUBFOLDER}/ui_{tag}.caption'
     with open(label_path, 'w') as f:
         f.write(label)
