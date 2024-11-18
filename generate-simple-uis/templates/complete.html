@@ -1,6 +1,37 @@
 {% extends "base.html" %} 
 {% block styles %}
 <style>
+    /* Grid styles */
+    .row {
+        width: 100%;
+        height: {{ 100 / config['grid']['rows'] }}%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        width: {{ 100 / config['grid']['columns'] }}%;
+        height: 100%;
+        gap: 20px;
+    }
+
+    .block {
+        display: flex;
+        flex-direction: column;
+        justify-content: {{ config['input']['vertical_align'] }};
+        align-items: {{ config['input']['horizontal_align'] }};
+        height: 100%;
+        padding: 10px;
+        background-color: var(--shade-1);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+    }
+
     /* Navbar container with Flexbox */
     .navbar {
         background-color: var(--background);
@@ -45,44 +76,6 @@
         transition: background-color 0.3s ease-in-out;
     }
 
-    /* Dropdown button */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown .dropbtn {
-        color: var(--text);
-        padding: 14px 20px;
-        background-color: inherit;
-        border: none;
-        font-size: 16px;
-    }
-
-    /* Dropdown content */
-    .dropdown-content {
-        display: {{'block' if dropdown else 'none' }};
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 120px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    /* Dropdown content items */
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    /* Show dropdown content on hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
-        color: var(--text);
-    }
-
     /* Search bar */
     .search-container {
         display: flex;
@@ -113,29 +106,21 @@
     
 {% block content %}
 <body>
+    {% if 'navbar' in config %}
     <div class="navbar">
-        <div class="logo">{{ logo }}</div>
+        {% if 'logo' in config['navbar'] %}
+        <div class="logo">{{ config['navbar']['logo'] }}</div>
+        {% endif %}
 
+        {% if 'links' in config['navbar'] %}
         <div class="links">
-            {% for link in links %}
+            {% for link in config['navbar']['links'] %}
             <a href="{{ link }}">{{ link }}</a>
             {% endfor %}
-
-            {% if dropdown %}
-            <div class="dropdown">
-                <button class="dropbtn">Dropdown 
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">Option 1</a>
-                    <a href="#">Option 2</a>
-                    <a href="#">Option 3</a>
-                </div>
-            </div>
-            {% endif %}
         </div>
+        {% endif %}
 
-        {% if searchbar %}
+        {% if config['navbar'].get('searchbar') %}
         <div class="search-container">
             <form action="/search">
                 <input type="text" placeholder="Search.." name="search">
@@ -144,30 +129,34 @@
         </div>
         {% endif %}
     </div>
-    <div class="grid-container">
-        {% for row in range(rows) %}
+    {% endif %}
+
+    {% if 'grid' in config %}
+    <div class="container">
+        {% for row in range(config['grid']['rows']) %}
         <div class="row">
-          {% for col in range(cols) %}
+          {% for col in range(config['grid']['columns']) %}
           <div class="col">
-            {% if ir == row and ic == col %}
+
             <div class="block">
-            <form action="">
-                <label for="{{ input_type }}">{{ input_type | title }}:</label>
-                <br>
-                {% if default_value %}
-                <input type="{{ input_type }}" id="{{ input_type }}" value="{{ default_value }}">
-                {% else %}
-                <input type="{{ input_type }}" id="{{ input_type }}">
+                {% if 'input' in config and config['input']['location'] == (row, col) %}
+                <form action="">
+                    <label for="{{ config['input']['input_type'] }}">{{ config['input']['input_type'] | title }}:</label>
+                    <br>
+                    {% if config['input']['default_value'] %}
+                    <input type="{{ config['input']['input_type'] }}" id="{{ config['input']['input_type'] }}" value="{{ config['input']['default_value'] }}">
+                    {% else %}
+                    <input type="{{ config['input']['input_type'] }}" id="{{ config['input']['input_type'] }}">
+                    {% endif %}
+                </form>
                 {% endif %}
-            </form>
             </div>
-            {% else %}
-            <div class="block"></div>
-            {% endif %}
+
           </div>
           {% endfor %}
         </div>
         {% endfor %}
       </div>
+      {% endif %}
 </body>
 {% endblock %}
