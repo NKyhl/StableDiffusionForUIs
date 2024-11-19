@@ -1,3 +1,4 @@
+import json
 import os
 from jinja2 import Environment, FileSystemLoader
 from selenium import webdriver
@@ -87,7 +88,7 @@ def generate_complete_ui(config):
     # Save json configuration 
     config_path = f'labels/{SUBFOLDER}/ui_{tag}.config'
     with open(config_path, 'w') as f:
-        f.write(str(config))
+        json.dump(config, f)
 
     # Remove HTML
     os.remove(f'./{html_file}')
