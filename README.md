@@ -31,3 +31,5 @@ To improve our model further, a small dataset of professional UI samples has bee
 These screenshots were manually taken from 40-50 sites off Moz's list of the [500 most popular websites](https://moz.com/top500). 
 News sites were avoided because of the recent election, as every news site had election-themed content that would likely teach the model an unneccessary pattern.
 In many cases, multiple screenshots were taken from different pages on a single website, hopefully allowing the model to learn how to create multiple pages in a similar theme.
+
+Many of these images were full-page captures, and could be spliced into smaller sections for use in training.
