@@ -22,7 +22,7 @@ In order to create many simple user interface samples for use in the first round
 - searchbar_configurations = [True, False]
 - align_configurations = ['start', 'center', 'end']
 
-## Curated Uis
+## Curated UIs
 
 The UIs generated in the first section are very simplistic and miss out on many of the key elements of a professional-looking user interface.
 
