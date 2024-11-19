@@ -24,30 +24,32 @@ if not os.path.exists(f'screenshots/{SUBFOLDER}'):
 if not os.path.exists(f'labels/{SUBFOLDER}'):
     os.makedirs(f'labels/{SUBFOLDER}')
 
-THEMES = {
-    'light': {
+THEMES = [
+    {
+        'name': 'light',
         'background': '#FFF',
         'shade-1': '#F8F8F8',
         'border': '#c7c7c7',
         'text': '#000',
     },
-    'dark': {
+    {
+        'name': 'dark',
         'background': '#000',
         'shade-1': '#1F1F1F',
         'border': '#292929',
         'text': '#E1E1E1',
     },
-}
+]
 
 def generate_grid_ui(theme, rows, columns):
     # Create unique identifier
-    tag = f'{SUBFOLDER}_{rows}_{columns}_{theme}'
+    tag = f'{SUBFOLDER}_{rows}_{columns}_{theme['name']}'
 
     # Render the HTML with x columns
     rendered_html = template.render(
         rows=rows,
         cols=columns,
-        theme=THEMES[theme]
+        config={'theme': theme}
     )
     
     # Save the HTML file
@@ -67,7 +69,7 @@ def generate_grid_ui(theme, rows, columns):
     driver.save_screenshot(screenshot_path)
 
     # Save description
-    label = f'a user interface with {rows} rows of {columns} columns with a {theme} theme'
+    label = f'a user interface with {rows} rows of {columns} columns with a {theme['name']} theme'
     label_path = f'labels/{SUBFOLDER}/ui_{tag}.caption'
     with open(label_path, 'w') as f:
         f.write(label)

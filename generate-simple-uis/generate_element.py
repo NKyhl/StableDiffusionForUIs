@@ -24,24 +24,26 @@ if not os.path.exists(f'screenshots/{SUBFOLDER}'):
 if not os.path.exists(f'labels/{SUBFOLDER}'):
     os.makedirs(f'labels/{SUBFOLDER}')
 
-THEMES = {
-    'light': {
+THEMES = [
+    {
+        'name': 'light',
         'background': '#FFF',
         'shade-1': '#F8F8F8',
         'border': '#c7c7c7',
         'text': '#000',
     },
-    'dark': {
+    {
+        'name': 'dark',
         'background': '#000',
         'shade-1': '#1F1F1F',
         'border': '#292929',
         'text': '#E1E1E1',
     },
-}
+]
 
 def generate_input_ui(theme, input_type, default_value, location, location_description):
     # Create unique identifier
-    tag = f'{SUBFOLDER}_{input_type}_{location_description}_{theme}'
+    tag = f'{SUBFOLDER}_{input_type}_{location_description}_{theme['name']}'
 
     # Render the HTML
     rendered_html = template.render(
@@ -49,7 +51,7 @@ def generate_input_ui(theme, input_type, default_value, location, location_descr
         default_value=default_value,
         row=location[0],
         col=location[1],
-        theme=THEMES[theme]
+        config={'theme': theme}
     )
     
     # Save the HTML file
@@ -69,7 +71,7 @@ def generate_input_ui(theme, input_type, default_value, location, location_descr
     driver.save_screenshot(screenshot_path)
 
     # Save description
-    label = f'a user interface with a {input_type} input field in the {location_description} with a {theme} theme'
+    label = f'a user interface with a {input_type} input field in the {location_description} with a {theme['name']} theme'
     label_path = f'labels/{SUBFOLDER}/ui_{tag}.caption'
     with open(label_path, 'w') as f:
         f.write(label)
