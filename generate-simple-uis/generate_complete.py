@@ -139,9 +139,12 @@ link_configurations = [
 searchbar_configurations = [True, False]
 align_configurations = ['start', 'center', 'end']
 
+row_range = (1, 4)
+col_range = (1, 4)
+
 for theme in THEMES:
-    for iRow in range(3, 4):
-        for iCol in range(1, 4):
+    for iRow in range(*row_range):
+        for iCol in range(*col_range):
             print(f"Generating {theme['name']} theme with {iRow} rows and {iCol} columns - {time()}")
 
             for links in link_configurations:
