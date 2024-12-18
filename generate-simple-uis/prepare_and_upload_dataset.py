@@ -4,6 +4,8 @@ from datasets import Dataset, Features, Image, Value, DatasetDict
 from huggingface_hub import login
 from ast import literal_eval
 
+'''Upload dataset to HuggingFace as a .parquet file'''
+
 login()
 image_dir = 'screenshots/complete'
 label_dir = 'labels/complete'
