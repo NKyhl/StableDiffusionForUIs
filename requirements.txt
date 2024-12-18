@@ -2,3 +2,4 @@ datasets
 jinja2
 selenium
 huggingface_hub
+pillow
