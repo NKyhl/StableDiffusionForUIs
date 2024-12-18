@@ -3,3 +3,5 @@ jinja2
 selenium
 huggingface_hub
 pillow
+setuptools
+accelerate
