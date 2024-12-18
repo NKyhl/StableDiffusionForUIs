@@ -4,6 +4,12 @@ Goal: fine tune a stable diffusion model for use in a user interface generation 
 
 1. **generate-simple-uis/**: scripts and templates for generating a large number of basic UIs and associated labels described using json configurations. A dataset has been uploaded to [Huggingface](https://huggingface.co/datasets/nkyhl/simple-uis) - details below
 2. **curated-uis/**: a small set of screenshots from professional websites on Moz's list of the [500 most popular websites](https://moz.com/top500)
+3. **train/**: scripts for downloading the previously mentioned dataset from Huggingface and fine-tuning an SDXL base model
+
+**General Setup:**
+- `python -m venv venv`
+- `source venv/bin/activate`
+- `pip install -r requirements.txt`
 
 ## Generate Simple UIs
 
@@ -33,3 +39,5 @@ News sites were avoided because of the recent election, as every news site had e
 In many cases, multiple screenshots were taken from different pages on a single website, hopefully allowing the model to learn how to create multiple pages in a similar theme.
 
 Many of these images were full-page captures, and could be spliced into smaller sections for use in training.
+
+## Train
