@@ -1,5 +1,7 @@
 # Stable Diffusion for User Interfaces
 
+**Fall 2024 Research Project with Professor Colin McMillan**
+
 Goal: fine tune a stable diffusion model for use in a user interface generation system as a simple prototyping and requirements-gathering tool.
 
 1. **generate-simple-uis/**: scripts and templates for generating a dataset of UIs and associated labels described using json configurations. A dataset has been uploaded to [Huggingface](https://huggingface.co/datasets/nkyhl/simple-uis) - details below
