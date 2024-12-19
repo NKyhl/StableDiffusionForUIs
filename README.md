@@ -1,4 +1,4 @@
-# UI Stable Diffusion
+# Stable Diffusion for User Interfaces
 
 Goal: fine tune a stable diffusion model for use in a user interface generation system as a simple prototyping and requirements-gathering tool.
 
