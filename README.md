@@ -2,12 +2,16 @@
 
 **Fall 2024 Research Project with Professor Colin McMillan**
 
-Goal: fine tune a stable diffusion model for use in a user interface generation system as a simple prototyping and requirements-gathering tool.
+**Goal:** fine tune a stable diffusion model for use in a user interface generation system as a simple prototyping and requirements-gathering tool.
 
-1. **generate-simple-uis/**: scripts and templates for generating a dataset of UIs and associated labels described using json configurations. A dataset has been uploaded to [Huggingface](https://huggingface.co/datasets/nkyhl/simple-uis) - details below
+1. **generate-simple-uis/**: scripts and templates for generating a dataset of UIs and associated labels described using json configurations.
 2. **curated-uis/**: a small set of unlabeled screenshots from professional websites on Moz's list of the [500 most popular websites](https://moz.com/top500)
-3. **train/**: scripts for downloading the previously mentioned dataset from Huggingface and fine-tuning an SDXL base model
+3. **train/**: scripts for downloading the previously mentioned dataset from Huggingface and fine-tuning an SDXL model
 4. **meeting-notes/**: PDFs of the research updates given every two weeks in Fall 2024
+
+**Links:**
+- [Dataset on Hugging Face](https://huggingface.co/datasets/nkyhl/simple-uis)
+- [Models on Hugging Face](https://huggingface.co/nkyhl/sdxl-simple-ui-generator/).
 
 ## Generate Simple UIs
 
@@ -17,7 +21,7 @@ In order to create many simple user interface samples for use in the first round
 
 `generate_complete.py` focuses on generating UIs with many components stitched together, described via a json configuration format that can be iterated over to create thousands of samples. These samples can hopefully train the model to understand the composition of components.
 
-[Huggingface dataset](https://huggingface.co/datasets/nkyhl/simple-uis): This dataset was generated using `generate_complete.py` and uploaded using `prepare_and_upload_dataset.py`. It was created with the following reduced parameters over about an hour, creating 13,034 samples. These options could easily be increased to generate hundreds of thousands to millions of samples if desired:
+[Dataset on Hugging Face](https://huggingface.co/datasets/nkyhl/simple-uis): This dataset was generated using `generate_complete.py` and uploaded using `prepare_and_upload_dataset.py`. It was created with the following reduced parameters over about an hour, creating 13,034 samples. These options could easily be increased to generate hundreds of thousands to millions of samples if desired:
 - row_range = (1,4)
 - col_range = (1,4)
 - themes = [{'name': 'light','background': '#FFF','shade-1': '#F8F8F8','border': '#c7c7c7','text': '#000',},{'name': 'dark','background': '#000','shade-1': '#1F1F1F','border': '#292929','text': '#E1E1E1',}]
@@ -40,7 +44,7 @@ Many of these images were full-page captures, and could be spliced into smaller 
 
 ## Train
 
-The following section describes how the base SDXL model was fine-tuned on the generated UIs. Please see the December 3rd Research Update for more information on the different training approaches used over the course of the semester and their hyperparameters. I have uploaded a few of these fine-tuned models to Huggingface here: [sdxl-simple-ui-generator](https://huggingface.co/nkyhl/sdxl-simple-ui-generator/).
+The following section describes how the base SDXL model was fine-tuned on the generated UIs. Please see the December 3rd Research Update for more information on the different training approaches used over the course of the semester and their hyperparameters. I have uploaded a few of these fine-tuned models to Huggingface here: [Models on Hugging Face](https://huggingface.co/nkyhl/sdxl-simple-ui-generator/).
 
 `download_dataset.py` downloads the Huggingface dataset of complete uis (simple uis composed of multiple sections) and saves the individual files to the ./data folder.
 
