@@ -1,15 +1,11 @@
 # UI Stable Diffusion
 
-Goal: fine tune a stable diffusion model for use in a user interface generation system as a requirements-gathering and simple prototyping tool.
+Goal: fine tune a stable diffusion model for use in a user interface generation system as a simple prototyping and requirements-gathering tool.
 
-1. **generate-simple-uis/**: scripts and templates for generating a large number of basic UIs and associated labels described using json configurations. A dataset has been uploaded to [Huggingface](https://huggingface.co/datasets/nkyhl/simple-uis) - details below
-2. **curated-uis/**: a small set of screenshots from professional websites on Moz's list of the [500 most popular websites](https://moz.com/top500)
+1. **generate-simple-uis/**: scripts and templates for generating a dataset of UIs and associated labels described using json configurations. A dataset has been uploaded to [Huggingface](https://huggingface.co/datasets/nkyhl/simple-uis) - details below
+2. **curated-uis/**: a small set of unlabeled screenshots from professional websites on Moz's list of the [500 most popular websites](https://moz.com/top500)
 3. **train/**: scripts for downloading the previously mentioned dataset from Huggingface and fine-tuning an SDXL base model
-
-**General Setup:**
-- `python -m venv venv`
-- `source venv/bin/activate`
-- `pip install -r requirements.txt`
+4. **meeting-notes/**: PDFs of the research updates given every two weeks in Fall 2024
 
 ## Generate Simple UIs
 
@@ -42,12 +38,12 @@ Many of these images were full-page captures, and could be spliced into smaller 
 
 ## Train
 
-The following section describes how the base SDXL model was fine-tuned on the generated UIs. Please see the December 3rd Research Update for more information on the different training approaches used over the course of the semester and their hyperparameters. I have uploaded two fine-tuned models on CIVIT.AI: one is called UI-compositions
+The following section describes how the base SDXL model was fine-tuned on the generated UIs. Please see the December 3rd Research Update for more information on the different training approaches used over the course of the semester and their hyperparameters. I have uploaded a few of these fine-tuned models to Huggingface here: [sdxl-simple-ui-generator](https://huggingface.co/nkyhl/sdxl-simple-ui-generator/).
 
 `download_dataset.py` downloads the Huggingface dataset of complete uis (simple uis composed of multiple sections) and saves the individual files to the ./data folder.
 
 **Prerequisites**
-1. Please clone [kohya/sd-scripts](https://github.com/kohya-ss/sd-scripts) elsewhere as it includes a few scripts necessary for training. Its location is designated by [sd-scripts] in the following commands. After cloning, execute `source [sd-scripts]/venv/bin/activate`.
+1. Please clone [kohya/sd-scripts](https://github.com/kohya-ss/sd-scripts) elsewhere as it includes a few scripts necessary for training. Its location is designated by [sd-scripts] in the following commands. After cloning, make sure to execute `source [sd-scripts]/venv/bin/activate` in order to utilize these scripts.
 2. Please download EasyDiffusion or another front-end if you would like to try out your fine-tuned model.
 3. Please download the [SDXL base model](https://civitai.com/models/101055/sd-xl) in safetensors format. You may want to download straight to your [easy-diffusion]/models/stable-diffusion/ folder and reference it when training. Its location is designated by [SDXL] in the following commands.
 
